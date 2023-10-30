@@ -332,6 +332,50 @@ AuroraUserGuide/CHAP_AuroraOverview.html). (Postgres or MySQL). |
 <hr/>
 <br/>
 
+<<<<<<< HEAD
+=======
+#### **Certificate Inputs**
+| Name             | Type    | Description                        |
+|------------------|---------|------------------------------------|
+| `domain_name` | String | Define the root domain name for the application. e.g. bitovi.com'. |
+| `sub_domain` | String | Define the sub-domain part of the URL. Defaults to `${GITHUB_ORG_NAME}-${GITHUB_REPO_NAME}-${GITHUB_BRANCH_NAME}`. |
+| `root_domain` | Boolean | Deploy application to root domain. Will create root and www records. Default is `false`. |
+| `cert_arn` | String | Define the certificate ARN to use for the application. **See note**. |
+| `create_root_cert` | Boolean | Generates and manage the root cert for the application. **See note**. Default is `false`. |
+| `create_sub_cert` | Boolean | Generates and manage the sub-domain certificate for the application. **See note**. Default is `false`. |
+| `create_cert` | Boolean | Set this to true to use certificate is present for the domain. **See note**. Default is `false`. |
+<hr/>
+<br/>
+
+#### **Load Balancer Inputs**
+| Name             | Type    | Description                        |
+|------------------|---------|------------------------------------|
+| `lb_port` | String | Load balancer listening port. Default is `80` if NO FQDN provided, `443` if FQDN provided. |
+| `lb_healthcheck` | String | Load balancer health check string. Default is `TCP:22`. |
+<hr/>
+<br/>
+
+#### **Application Inputs**
+| Name             | Type    | Description                        |
+|------------------|---------|------------------------------------|
+| `docker_remove_orphans` | Boolean | Set to `true` to turn the `--remove-orphans` flag. Defaults to `false`. |
+| `docker_full_cleanup` | Boolean | Set to `true` to run `docker-compose down` and `docker system prune --all --force --volumes` after. Runs before `docker_install`. WARNING: docker volumes will be destroyed. |
+| `app_directory` | String | Relative path for the directory of the app. (i.e. where the `docker-compose.yaml` file is located). This is the directory that is copied into the EC2 instance. Default is `/`, the root of the repository. Add a `.gha-ignore` file with a list of files to be exluded. (Using glob patterns). |
+| `app_directory_cleanup` | Boolean | Will generate a timestamped compressed file (in the home directory of the instance) and delete the app repo directory. Runs before `docker_install` and after `docker_full_cleanup`. |
+| `app_port` | String | Port to be expose for the container. Default is `3000` | 
+<hr/>
+<br/>
+
+#### **Terraform Inputs**
+| Name             | Type    | Description                        |
+|------------------|---------|------------------------------------|
+| `tf_state_bucket` | String | AWS S3 bucket name to use for Terraform state. See [note](#s3-buckets-naming) | 
+| `tf_state_bucket_destroy` | Boolean | Force purge and deletion of S3 bucket defined. Any file contained there will be destroyed. `stack_destroy` must also be `true`. Default is `false`. |
+| `additional_tags` | JSON | Add additional tags to the terraform [default tags](https://www.hashicorp.com/blog/default-tags-in-the-terraform-aws-provider), any tags put here will be added to all provisioned resources.|
+<hr/>
+<br/>
+<br/>
+>>>>>>> parent of af17e21 (Adding cloudwatch)
 
 #### **GitHub Deployment repo inputs**
 | Name             | Type    | Description                        |
