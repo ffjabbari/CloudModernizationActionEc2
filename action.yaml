@@ -199,7 +199,6 @@ inputs:
   aws_elb_app_port: # app_port
     description: 'Port to expose for the app'
     required: false
-    default: 3000
   aws_elb_app_protocol:
     description: 'Protocol to enable. Could be HTTP, HTTPS, TCP or SSL. Defaults to TCP.'
     required: false
@@ -424,6 +423,7 @@ inputs:
     required: false
   app_port:
     required: false
+    default: 3000
   lb_port:
     required: false
   lb_healthcheck:
