@@ -519,7 +519,7 @@ runs:
 
     - name: Deploy with BitOps
       id: deploy
-      uses: bitovi/github-actions-commons@v0.0.10
+      uses: bitovi/github-actions-commons@add-cert-to-rds
       with:
         # AWS Specific
         aws_access_key_id: ${{ inputs.aws_access_key_id }}
