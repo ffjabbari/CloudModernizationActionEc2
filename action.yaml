@@ -533,6 +533,7 @@ runs:
         gh_action_repo: ${{ github.action_path }}
         checkout: ${{ inputs.checkout }}
         bitops_code_only: ${{ inputs.bitops_code_only }}
+        bitops_code_store: ${{ inputs.bitops_code_store }}
         tf_stack_destroy: ${{ inputs.tf_stack_destroy || inputs.stack_destroy }}
         tf_state_file_name: ${{ inputs.tf_state_file_name }}
         tf_state_file_name_append: ${{ inputs.tf_state_file_name_append }}
